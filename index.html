@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Learning Vue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="vue-app">
+      <h1>{{ greet("afternoon") }}</h1>
+      <p>Name: {{ name }}</p>
+      <p>Job: {{ job }}</p>
+      <!-- IT WORKS WITHOUT V-BIND => :href -->
+      <h1>Data Binding</h1>
+      <a v-bind:href="website">Go to Link</a>
+      <input type="text" :value="name" />
+      <p v-html="websiteTag"></p>
+
+      <h1>Events</h1>
+      <!-- VUE LISTENS THIS EVENT ONCE  -->
+      <button v-on:click.once="add(1)">Add a Year</button>
+
+      <button v-on:click="age--">Subtract a Year</button>
+      <button v-on:dblclick="add(10)">Add 10 Years</button>
+      <p>My Age is {{ age }}</p>
+
+      <div id="canvas" @mousemove="updateXY">{{ x }} , {{ y }}</div>
+      <a v-on:click.prevent="click" href="www.google.com">Go to Google</a>
+
+      <h1>Keyboard Events</h1>
+      <label>Name:</label>
+      <!-- LISTENS AFTER HITTING ENTER -->
+      <input type="text" v-on:keyup.enter="logName" />
+      <label>Age:</label>
+
+      <!-- COMBINED HITS WITH ALT AND ENTER -->
+      <input type="text" v-on:keyup.alt.enter="logAge" />
+
+      <h1>TWO WAY DATA BINDING</h1>
+      <label>Something</label>
+      <input type="text" v-model="something" />
+      <span> {{ something }}</span>
+      <div>
+        <h1>Computed Properties</h1>
+        <button v-on:click="a++">Add to A</button>
+        <button v-on:click="b++">Add to B</button>
+        <p>A - {{ a }}</p>
+        <p>B - {{ b }}</p>
+        <p>Age + A - {{ addToA }}</p>
+        <p>Age + B - {{ addToB }}</p>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
